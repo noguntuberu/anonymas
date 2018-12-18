@@ -13,9 +13,10 @@ const http = require('http');
 const bodyParse = require('body-parser');
 const cors = require('cors');
 
+//  INSTANTIATE APP
 const app = express();
 
-/*  MIDDLEWARES */
+//  MIDDLEWARE
 app.use(express.static('public'));
 app.use(compression());
 app.use(helmet());
@@ -23,15 +24,27 @@ app.use(cors());
 app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({extended: true}));
 
-/*  ROUTING */
-app.use('/start');
-app.use('/chat');
+//  ROUTING
+const startPath = require('./routes/start');
+const chatPath = require('./routes/chat');
 
-app.use('/*', (req, res) => {
-    res.redirect('/');
+app.use('/start', startPath);
+app.use('/chat', chatPath);
+
+app.get('/', (req, res) => {
+    res.send('Hello!');
 });
 
 /* WEB SOCKETS*/
-const sockets = require('./config/sockets')(http, app);
+var sockets = require('./config/sockets');
+sockets = new sockets(http, app);
+
 sockets.config();
 sockets.listen();
+
+
+//  SERVE APPLICATION
+const port = 3000;
+app.listen(process.env.PORT || port, () => {
+    console.log('Node is listening on port: ' + port);
+});

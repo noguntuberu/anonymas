@@ -19,4 +19,4 @@ class sockets {
     }
 }
 
-modules.exports = sockets;
+module.exports = sockets;
