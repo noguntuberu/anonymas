@@ -3,14 +3,8 @@
 **/
 
 class sockets {
-    constructor(http, app) {
-        this.io = require('socket.io');
-        this.http = http;
-        this.app = app;
-    }
-    config() {
-        this.http = this.http.Server(this.app);
-        this.io = this.io(this.http);
+    constructor(io) {
+        this.io =  io;
     }
     listen() {
         this.io.on('connection', (socket) => {

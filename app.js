@@ -5,13 +5,16 @@
  */
 
 /*  REQUIRE MODULES    */
-const compression = require('compression');
-const helmet = require('helmet');
-const express = require('express');
-const config = require('./config/config');
-const http = require('http');
-const bodyParse = require('body-parser');
-const cors = require('cors');
+const   compression = require('compression'),
+        helmet = require('helmet'),
+        express = require('express'),
+        config = require('./config/config'),
+        bodyParse = require('body-parser'),
+        cors = require('cors');
+
+var http = require('http');
+
+
 
 //  INSTANTIATE APP
 const app = express();
@@ -25,26 +28,30 @@ app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({extended: true}));
 
 //  ROUTING
-const startPath = require('./routes/start');
-const chatPath = require('./routes/chat');
+const   userPath = require('./routes/users');
 
-app.use('/start', startPath);
-app.use('/chat', chatPath);
+app.use('/start', (req, res) => {
+    //  Leaving empty because Angular would sort page routing
+});
+app.use('/chat', (req, res) => {
+    //  Leaving empty because Angular would sort page routing
+});
+app.use('/user', userPath);
+app.use('/*', (req, res) => {
 
-app.get('/', (req, res) => {
-    res.send('Hello!');
 });
 
 /* WEB SOCKETS*/
-var sockets = require('./config/sockets');
-sockets = new sockets(http, app);
+var io = require('socket.io');
+var wSocket = require('./config/sockets');
+http = http.Server(app);
 
-sockets.config();
-sockets.listen();
-
+io = io(http);
+wSocket = new wSocket(io);
+wSocket.listen();
 
 //  SERVE APPLICATION
 const port = 3000;
-app.listen(process.env.PORT || port, () => {
+http.listen(process.env.PORT || port, () => {
     console.log('Node is listening on port: ' + port);
 });
