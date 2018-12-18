@@ -28,7 +28,6 @@ app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({extended: true}));
 
 //  ROUTING
-const   userPath = require('./routes/users');
 
 app.use('/start', (req, res) => {
     //  Leaving empty because Angular would sort page routing
@@ -36,7 +35,6 @@ app.use('/start', (req, res) => {
 app.use('/chat', (req, res) => {
     //  Leaving empty because Angular would sort page routing
 });
-app.use('/user', userPath);
 app.use('/*', (req, res) => {
 
 });
