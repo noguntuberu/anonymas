@@ -1,0 +1,31 @@
+{
+  "name": "anonymas",
+  "version": "1.0.0",
+  "description": "Anonymous Chat app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dynameek/anonymous.git"
+  },
+  "keywords": [
+    "Anonymous",
+    "Chat",
+    "Private",
+    "Chat",
+    "Instant",
+    "Messaging"
+  ],
+  "author": "Oguntuberu Nathan O.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dynameek/anonymous/issues"
+  },
+  "homepage": "https://github.com/dynameek/anonymous#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "http": "0.0.0"
+  }
+}
