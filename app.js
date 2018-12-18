@@ -4,15 +4,24 @@
  * @Data: 18-12-2018
  */
 
-/*  REQUIRED MODULES    */
+/*  REQUIRE MODULES    */
+const compression = require('compression');
+const helmet = require('helmet');
 const express = require('express');
 const config = require('./config/config');
 const http = require('http');
+const bodyParse = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 
 /*  MIDDLEWARES */
 app.use(express.static('public'));
+app.use(compression());
+app.use(helmet());
+app.use(cors());
+app.use(bodyParse.json());
+app.use(bodyParse.urlencoded({extended: true}));
 
 /*  ROUTING */
 app.use('/start');
