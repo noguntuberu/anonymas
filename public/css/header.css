@@ -1,0 +1,96 @@
+/*
+ *	This file holds styling for header
+ *	@author: Oguntuberu Nathan O.
+ *	@date: 18-07-2018
+*/
+header{
+	height: 8.0vh;
+	padding: 15px;
+	padding: 15px 15%;
+	margin-bottom: 10px;
+	font-family: serif;
+}
+nav{
+	position: fixed;
+	top: 60px;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	
+	display: none;
+	
+	background: rgba(0, 0, 0, 0.3);
+}
+.nav-items-pane{
+	width: 270px;
+	height: 100vh;
+	
+	margin-left: -80%;
+}
+.nav-items-pane header{
+	border-bottom: 1px solid #dfdfdf;
+	padding: 5px;
+}
+.header-icon-wrap{
+	width: 200px;
+	height: 50px;
+	
+	align-self: center;
+}
+
+/*	*/
+.nav-items-wrap{
+	min-height: 80%;
+	padding: 15px;
+	color: #000;
+}
+.nav-items-wrap li{
+	margin-bottom: 10px;
+}
+.nav-item-icon{
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+	
+	background: #dedede;
+}
+.nav-item-name{
+	width: auto;
+}
+
+/*	*/
+.nav-icon-wrapper{
+	width: 20%;
+	height: 100vh;
+	
+}
+
+/*	*/
+header .site-icon{
+	height: 30px;
+	width: 200px;
+
+	margin-top: 15px;
+}
+.header-page-name{
+	margin-left: 15px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+/*	*/
+
+header ul li {
+	display: inline-block;
+	width: 130px;
+
+	font-size: 1.15em;
+	font-weight: bold;
+}
+header div[class='right']{
+	width: auto;
+}
+header a{
+	text-decoration: none;
+	color: #fff;
+}

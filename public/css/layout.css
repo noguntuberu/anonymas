@@ -1,0 +1,108 @@
+/*
+ *	@Purpose: Holds all my layout styling
+ *	@Author: Oguntuberu Nathan O.
+ *	@Date: 15-07-2018
+*/
+
+/* FLEXIBLE DISPLAYS	*/
+.center-col-flex{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+}
+
+.center-row-flex{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+}
+.row-flex{
+	display: flex;
+	flex-direction: row;
+}
+
+/*	GRID LAYOUT	*/
+*[class^='col']{
+	width: 100%;
+}
+
+@media screen and (min-width: 600px) and (max-width: 1028px){
+	.col-m-1{
+		width: 8.3%;
+	}
+	.col-m-2{
+		width: 16.6%;
+	}
+	.col-m-3{
+		width: 25%;
+	}
+	.col-m-4{
+		width: 33.3%;
+	}
+	.col-m-5{
+		width: 41.7%;
+	}
+	.col-m-6{
+		width: 50%;
+	}
+	.col-m-7{
+		width: 58.3%;
+	}
+	.col-m-8{
+		width: 66.4%;
+	}
+	.col-m-9{
+		width: 75%;
+	}
+	.col-m-10{
+		width: 83%;
+	}
+	.col-m-11{
+		width: 91.3%;
+	}
+	.col-m-12{
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 1029px)
+{
+	.col-l-1{
+		width: 8.3%;
+	}
+	.col-l-2{
+		width: 16.6%;
+	}
+	.col-l-3{
+		width: 25%;
+	}
+	.col-l-4{
+		width: 33.3%;
+	}
+	.col-l-5{
+		width: 41.7%;
+	}
+	.col-l-6{
+		width: 50%;
+	}
+	.col-l-7{
+		width: 58.3%;
+	}
+	.col-l-8{
+		width: 66.4%;
+	}
+	.col-l-9{
+		width: 75%;
+	}
+	.col-l-10{
+		width: 83%;
+	}
+	.col-l-11{
+		width: 91.3%;
+	}
+	.col-l-12{
+		width: 100%;
+	}
+}
