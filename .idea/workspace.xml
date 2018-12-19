@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f05e166-1a32-40a0-a5ae-fe500b2647f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/chat.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../misc/.idea/php.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../misc/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../misc/test.js" afterDir="false" />
@@ -86,10 +85,8 @@
       <change beforePath="$PROJECT_DIR$/../ang-src/tsconfig.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ang-src/tslint.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ang-src/{" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/socket.io.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/start.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/start.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../controller/chat.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../controller/message.js" beforeDir="false" />
@@ -165,14 +162,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="14" />
-          <entry key="html" value="251" />
-          <entry key="js" value="2581" />
+          <entry key="html" value="274" />
+          <entry key="js" value="2671" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="251" />
-          <entry key="JavaScript" value="2581" />
+          <entry key="HTML" value="274" />
+          <entry key="JavaScript" value="2671" />
           <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
@@ -183,17 +180,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="53" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="193">
+              <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+            <state relative-caret-position="120">
+              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -207,7 +204,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/chat.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
@@ -250,10 +247,10 @@
         <option value="$PROJECT_DIR$/routes/chats.js" />
         <option value="$PROJECT_DIR$/config/sockets.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
-        <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/start.html" />
         <option value="$PROJECT_DIR$/public/chat.html" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
       </list>
     </option>
   </component>
@@ -348,18 +345,18 @@
       <updated>1545155293866</updated>
       <workItem from="1545155294975" duration="13030000" />
       <workItem from="1545247918556" duration="128000" />
-      <workItem from="1545249780733" duration="214000" />
+      <workItem from="1545249780733" duration="810000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13372000" />
+    <option name="totallyTimeSpent" value="13968000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25506938" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08804696" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -374,7 +371,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32972974" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32972974" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -426,24 +423,10 @@
         <state relative-caret-position="-1935" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/sockets.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -458,6 +441,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>

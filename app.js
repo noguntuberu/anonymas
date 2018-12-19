@@ -30,10 +30,10 @@ app.use(bodyParse.urlencoded({extended: true}));
 //  ROUTING
 
 app.use('/start', (req, res) => {
-    //  Leaving empty because Angular would sort page routing
+    res.sendFile(__dirname + '/public/start.html');
 });
 app.use('/chat', (req, res) => {
-    //  Leaving empty because Angular would sort page routing
+    res.sendFile(__dirname + '/public/chat.html');
 });
 app.use('/*', (req, res) => {
 
