@@ -12,6 +12,9 @@ const   compression = require('compression'),
         bodyParse = require('body-parser'),
         cors = require('cors');
 
+const   user = require('./routes/user');
+const   chat = require('./routes/chat');
+
 var http = require('http');
 
 
@@ -29,12 +32,17 @@ app.use(bodyParse.urlencoded({extended: true}));
 
 //  ROUTING
 
+/** BASIC */
 app.use('/start', (req, res) => {
     res.sendFile(__dirname + '/public/start.html');
 });
 app.use('/chat', (req, res) => {
     res.sendFile(__dirname + '/public/chat.html');
 });
+
+/** MIDDLE */
+app.use('/user', user);
+app.use('/chat', chat);
 app.use('/*', (req, res) => {
 
 });

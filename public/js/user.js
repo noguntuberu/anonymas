@@ -2,9 +2,17 @@
  *
 */
 
-class User {
-    //
-    setScreenName(name) {
+export class User {
+    constructor(HttpObj) {
+        this.http = HttpObj;
+    }
+    saveNameToDatabase(name) {
+        if (!name)
+        {
+            this.http.get('')
+        }
+    }
+    saveScreenNameTo(name) {
         let returnValue = false;
 
         if (name.length > 0) {
@@ -14,7 +22,7 @@ class User {
     }
     getScreenName() {
         let name = localStorage.getItem('screenName');
-        return (name) ? name : '';
+        return (name) ? name : null;
     }
 
     setSocketId(socketId) {
@@ -24,10 +32,12 @@ class User {
     }
     getSocketId() {
         let id = localStorage.getItem('socketId');
-        return id ? id : '';
+        return id ? id : null;
     }
 
     setOtherId(id) {
-        if
+        if (!id) {
+            
+        }
     }
 }
