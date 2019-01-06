@@ -5,19 +5,21 @@
  */
 
 /*  REQUIRE MODULES    */
-const   compression = require('compression'),
+const   mongoose = require('mongoose'),
+        compression = require('compression'),
         helmet = require('helmet'),
         express = require('express'),
         config = require('./config/config'),
         bodyParse = require('body-parser'),
         cors = require('cors');
 
-const   user = require('./routes/user');
-const   chat = require('./routes/chat');
+const   user = require('./routes/user.route');
+const   chat = require('./routes/chat.route');
 
 var http = require('http');
 
-
+//  CONFIGURE DATABASE
+config.setUpMongoDb(mongoose);
 
 //  INSTANTIATE APP
 const app = express();
@@ -42,7 +44,7 @@ app.use('/chat', (req, res) => {
 
 /** MIDDLE */
 app.use('/user', user);
-app.use('/chat', chat);
+app.use('/convo', chat);
 app.use('/*', (req, res) => {
 
 });
