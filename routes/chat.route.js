@@ -16,7 +16,7 @@ router.get('/:userId', (req, res) => {
         if (err) {
             res.send(err);
         } else {
-            res.send(data);
+            res.send(JSON.parse(data));
         }
     });
 });
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
         if (err) {
             res.send(err);
         } else {
-            res.send(data);
+            res.send(JSON.parse(data));
         }
     });
 });
@@ -50,7 +50,7 @@ router.delete('/:id', (req, res) => {
         if (err) {
             res.send(err);
         } else {
-            res.send(data);
+            res.send(JSON.parse(data));
         }
     });
 });

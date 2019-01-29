@@ -4,12 +4,22 @@
 
 export class User {
     constructor(HttpObj) {
+        this.baseUri = window.location.origin;
         this.http = HttpObj;
     }
     saveNameToDatabase(name) {
-        if (!name)
+        if (name)
         {
-            this.http.get('')
+            let body = "name="+name;
+            this.http.post(
+                this.baseUri + '/user', 
+                body, 
+                {
+                    "Content-Type" : "application/x-www-form-urlencoded"
+                }
+            ).then((response)=>{
+                console.log(response);
+            });
         }
     }
     saveScreenNameTo(name) {

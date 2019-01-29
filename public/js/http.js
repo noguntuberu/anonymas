@@ -6,6 +6,7 @@
  export class Http {
     constructor() {
         this.http = null;
+        this.response = '';
         this.errorCode = 0;
         this.errorMessage = '';
     }
@@ -20,26 +21,34 @@
     }
     setHeaders(headers = {}) {
         if(headers !== {} ) {
-            for (header in headers) {
-                this.http.setRequestHeader(header, headers.header);
+            for (let header in headers) {
+                this.http.setRequestHeader(header, headers[header]);
             }
         }
     }
-
+    setResponse(response) {
+        console.log('response set: ' + response);
+        this.response = response;
+    }
+    getResponse(){
+        console.log('response: '+ this.response);
+        return this.response;
+    }
     /**
      * 
      */
     get(uri, async = true) {
         this.getInstance();
         this.http.open('GET', uri, async);
-        this.http.send();
+        this.http.send(null);
 
         this.http.onreadystatechange = () => {
             if (this.http.readyState === 4)
             {
                 if (this.http.status === 200)
                 {
-                    return this.http.responseText;
+                    this.response = this.http.responseText;
+                    return true;
                 }
             }
             //  Set any errors
@@ -53,25 +62,26 @@
     /**
      * 
      */
-    post(uri, data = null,  headers = {}, async = true) {
+    async post(uri, data = null,  headers = {}, async = true) {
         this.getInstance();
-        this.http.open('GET', uri, async);
+        this.http.open('POST', uri, async);
         this.setHeaders(headers);
-        this.send(data);
+        this.http.send(data);
 
         this.http.onreadystatechange = () => {
             if (this.http.readyState === 4)
             {
                 if (this.http.status === 200)
                 {
-                    return this.http.responseText;
+                   this.response = this.http.response;
+                   console.log(this.response);
+                }else {
+                    this.errorCode = -1;
+                    this.setResponse('Failed');
                 }
             }
-            //  Set any errors
-            this.errorCode = this.http.status;
-            this.errorMessage = this.http.responseText;
         }
 
-        return false;
+        console.log('returned response: ' + this.response);
     }
  }
