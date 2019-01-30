@@ -1,33 +1,25 @@
 /**
  * 
  */
-//var io = io();
 
-//import {Http} from './http.js';
-import {User} from './user.js';
+import {User} from '../models/user.js';
 
 window.addEventListener('load', function(){
-    /*  */
-    const user = new User();
 
     /** SOCKETS */
     const socket = io();
 
     /*  SOCKET LISTENERS    */
     socket.on('add-screen-name', (data) => {
-        /*  */
+        //
+        const user = new User();
         user.saveToLocalStorage(data.body);
     });
 
-    /**
-     * GET BUTTONS
-     */
+    /* GET BUTTON */
     const addScreenNameBtn = document.getElementById('addScreenNameBtn');
 
-
-    /**
-     * SAVE SCREEN NAME
-     */
+    /* SAVE SCREEN NAME */
     if (addScreenNameBtn) {
         addScreenNameBtn.addEventListener('click', function(){
             /*  GET NAME FROM FORM */
