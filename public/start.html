@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="./css/my-style-lib.css">
     
     <!--    SCRIPTS     -->
-    <script type="text/javascript" src="./js/socket.io.js"></script>
-    <script type="module" src="./js/my-scripts.js"></script>
+    <script type="text/javascript" src="./js/core/socket.io.js"></script>
+    <script type="module" src="./js/handler.js"></script>
 </head>
 <body>
     <div class="page-wrapper">
@@ -18,7 +18,7 @@
             <div class="form-wrapper bg-white rounded-corners">
                 <form name="start-chat-form">
                     <div id="form-message"></div>
-                    <input type="button" name="start_chat_btn" value="Start a Chat" class="input-100 bg-baby-blue">
+                    <input type="button" name="start_chat_btn" value="Start a Chat" class="input-100 bg-baby-blue" id="startChatBtn">
                 </form>
             </div>
         </div>

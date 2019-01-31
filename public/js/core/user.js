@@ -30,8 +30,10 @@ export class User {
 
     loadDataFromLocalStorage() {
         let data = JSON.parse(localStorage.getItem('user'));
-        //
-        this.setId(data.id);
-        this.setName(data.name);
+        
+        if(data) {
+            this.setId(data.id);
+            this.setName(data.name);
+        }
     }
 }

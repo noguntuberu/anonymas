@@ -2,7 +2,8 @@
  *  WEB SOCKETS
 **/
 const   User = require('../classes/User.js'),
-        userModel = require('../models/user.model');
+        userModel = require('../models/user.model'),
+        chatModel = require('../models/chat.model');
 
 
 class sockets {
@@ -25,7 +26,15 @@ class sockets {
 
             //  LISTEN FOR START CHAT
             socket.on('start-chat', (data) => {
-
+                let user = new User(socket, userModel);
+                user.setChatModel(chatModel);
+                user.setUSerInfo(data);
+                
+                if(user.startChat(data)) {
+                    console.log('success');
+                } else {
+                    console.log('failure');
+                }
             });
         });
     }

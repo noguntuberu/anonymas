@@ -14,19 +14,18 @@ let chatSchema = new ChatSchema({
 
 const Chat = module.exports = mongoose.model('Chat', chatSchema);
 
-module.exports.getChat = (userId, callback) => {
-    Chat.findOne(
+module.exports.getChat = async (userId) => {
+    return await Chat.findOne(
         {
             $or: [
                 {to: userId}, 
                 {from: userId}
             ]
-        },
-        callback);
+        });
 }
-module.exports.addChat = (chatData, callback) => {
-    chatData.save(callback);
+module.exports.addChat = async (chatData) => {
+    return await chatData.save();
 }
-module.exports.endChat = (chatId, callback) => {
-    Chat.updateOne({_id: chatId}, {isActive: false}, callback);
+module.exports.endChat = async (chatId) => {
+    return await Chat.updateOne({_id: chatId}, {isActive: false});
 }

@@ -9,68 +9,38 @@ const   router = express.Router();
 /**
  * GET
  */
-router.get('/', (req, res) => {
-    userModel.getAllUsers((err, data) => {
-        if (err) {
-            res.send('Error');
-        }else {
-            res.send(data);
-        }
-    });
+router.get('/', async (req, res) => {
+    res.send( await userModel.getAllUsers());
 });
 
-router.get('/free/:id', (req, res) => {
+router.get('/free/:id', async (req, res) => {
     let id = req.params.id;
 
-    userModel.getFreeUser(id, (err, data)=> {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(data);
-        }
-    })
+    res.send( await userModel.getFreeUser(id));
 });
 
-router.get('/in-chat/:id', (req, res) => {
+router.get('/in-chat/:id', async (req, res) => {
     let id = req.params.id;
 
-    userModel.getInChatStatus(id, (err, data)=> {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(data);
-        }
-    })
+    res.send( await userModel.getInChatStatus(id));
 });
 
-router.get('/socket/:id', (req, res) => {
+router.get('/socket/:id', async (req, res) => {
     let id = req.params.id;
 
-    userModel.getSocketId(id, (err, data)=> {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(data);
-        }
-    })
+    res.send( await userModel.getSocketId(id));
 });
 
-router.get('/want-chat/:id', (req, res) => {
+router.get('/want-chat/:id', async (req, res) => {
     let id = req.params.id;
 
-    userModel.getWantChatStatus(id, (err, data)=> {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(data);
-        }
-    })
+    res.send( await userModel.getWantChatStatus(id));
 });
 
 /** 
  * POST
  */
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     let newUser = new userModel({
         name: req.body.name,
         socket: '',
@@ -78,20 +48,14 @@ router.post('/', (req, res) => {
         isInChat: false
     });
 
-    userModel.addNewUser(newUser, (err, data) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.json(data);
-        }
-    })
+    res.send(await userModel.addNewUser(newUser));
 });
 
 /**
  *  PUT
  */
 
- router.put('/:id', (req, res) => {
+ router.put('/:id', async (req, res) => {
     let userData = {
         id: req.params.id,
         name: req.body.name,
@@ -100,71 +64,41 @@ router.post('/', (req, res) => {
         isInChat: req.body.isInChat
     };
 
-    userModel.updateUserInfo(userData, (err, data) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(data);
-        }
-    });
+    res.send( await userModel.updateUserInfo(userData));
  });
 
- router.put('/in-chat/:id', (req, res) => {
+ router.put('/in-chat/:id', async (req, res) => {
     let newData = {
         id: req.params.id,
         isInChat: req.body.value
     };
 
-    userModel.updateInChatStatus(newData, (err, data) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(data);
-        }
-    });
+    res.send( await userModel.updateInChatStatus(newData));
  });
 
- router.put('/socket/:id', (req, res) => {
+ router.put('/socket/:id', async (req, res) => {
     let newData = {
         id: req.params.id,
         socket: req.body.value
     };
 
-    userModel.updateSocketId(newData, (err, data) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(data);
-        }
-    });
+    res.send( await userModel.updateSocketId(newData));
  });
 
- router.put('/want-chat/:id', (req, res) => {
+ router.put('/want-chat/:id', async (req, res) => {
     let newData = {
         id: req.params.id,
         wantsToChat: req.body.value
     };
 
-    userModel.updateWantChatStatus(newData, (err, data) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(data);
-        }
-    });
+    res.send( await userModel.updateWantChatStatus(newData));
  });
 
 /**
  *  DELETE
  */
-router.delete('/', (req, res) => {
-    userModel.removeAllUsers((err, data) => {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(data);
-        }
-    })
+router.delete('/', async (req, res) => {
+    res.send( await userModel.removeAllUsers());
 });
 
 /**
