@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="./css/my-style-lib.css">
     
     <!--    SCRIPTS     -->
-    <script type="text/javascript" src="./js/socket.io.js"></script>
-    <script type="module" src="./js/my-scripts.js"></script>
+    <script type="text/javascript" src="./js/core/socket.io.js"></script>
+    <script type="module" src="./js/handler.js"></script>
 </head>
 <body>
-    <div class="page-wrapper bg-sky-grey">
+    <div class="page-wrapper bg-sky-grey" id="chat">
         <header class="bg-baby-blue">
             <div class=header-text-wrapper>
                 <div id="user-name"><em>hallo!</em></div>
                 <div class="rounded-sides" id="chat-info-bar">
-                    user is typing...
+                    is typing...
                 </div>
             </div>
-            <button class="right leave-btn">Leave</button>
+            <button class="right leave-btn" id="leave-btn">Leave</button>
         </header>
         <section class="chat-area">
             <div id="chat-messages">

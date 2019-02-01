@@ -9,6 +9,9 @@ const   router = express.Router();
 /**
  * GET
  */
+router.get('/', async (req, res) => {
+    res.send( await chatModel.getAllChats());
+});
 
 router.get('/:userId', async (req, res) => {
     let userId = req.params.userId;
@@ -30,6 +33,10 @@ router.post('/', async (req, res) => {
  /**
   *  DELETE
   */
+
+router.delete('/', async (req, res) => {
+    res.send( await chatModel.removeAllChats());
+});
 
 router.delete('/:id', async (req, res) => {
     let chatId = req.params.id;

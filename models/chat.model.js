@@ -14,9 +14,13 @@ let chatSchema = new ChatSchema({
 
 const Chat = module.exports = mongoose.model('Chat', chatSchema);
 
+module.exports.getAllChats = async () => {
+    return await Chat.find();
+}
 module.exports.getChat = async (userId) => {
     return await Chat.findOne(
         {
+            isActive: true,
             $or: [
                 {to: userId}, 
                 {from: userId}
@@ -28,4 +32,7 @@ module.exports.addChat = async (chatData) => {
 }
 module.exports.endChat = async (chatId) => {
     return await Chat.updateOne({_id: chatId}, {isActive: false});
+}
+module.exports.removeAllChats = async () => {
+    return await Chat.remove();
 }

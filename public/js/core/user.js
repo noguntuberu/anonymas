@@ -6,8 +6,10 @@ export class User {
     constructor() {
         this.id = null;
         this.name = null;
+        this.storageKey = 'user';
     }
 
+    //
     setId(id) {
         this.id = id;
     }
@@ -24,16 +26,21 @@ export class User {
         return this.name;
     }
 
+    //
     saveToLocalStorage(data) {
-        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem(this.storageKey, JSON.stringify(data));
     }
 
-    loadDataFromLocalStorage() {
-        let data = JSON.parse(localStorage.getItem('user'));
+    loadFromLocalStorage() {
+        let data = JSON.parse(localStorage.getItem(this.storageKey));
         
         if(data) {
             this.setId(data.id);
             this.setName(data.name);
         }
+    }
+
+    removeFromLocalStorage() {
+        localStorage.removeItem(this.storageKey);
     }
 }
