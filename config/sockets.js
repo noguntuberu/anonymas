@@ -59,6 +59,10 @@ class sockets {
                 socket.to(room).emit('typing', {});
             });
 
+            socket.on('not-typing', room => {
+                socket.to(room).emit('not-typing', {});
+            });
+
             socket.on('new-message', data => {
                 socket.to(data.room).emit('new-message', {message: data.message});
             });

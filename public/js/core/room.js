@@ -2,7 +2,7 @@
  * @author Oguntuberu Nathan O.
  */
 
-class Room {
+export class Room {
     constructor()
     {
         this.statBar = document.getElementById('chat-info-bar');
@@ -13,5 +13,3 @@ class Room {
         this.statBar.innerHTML = message;
     }
 }
-
-module.exports = Room;

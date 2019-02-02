@@ -76,8 +76,13 @@ window.addEventListener('load', function(){
             chatRoom.updateStatBar('is typing');
         });
 
+        socket.on('not-typing', () => {
+            //
+            chatRoom.updateStatBar('');
+        });
+
         socket.on('new-message', data => {
-            console.log('incoming message');
+            chatRoom.updateStatBar('');
         });
 
         socket.on('leave-chat', () => {
@@ -104,7 +109,11 @@ window.addEventListener('load', function(){
         });
 
         msgInput.addEventListener('input', () => {
-            socket.emit('typing', chat.getId());
+            if(msgInput.value.length < 1 ) {
+                socket.emit('not-typing', chat.getId());
+            } else {
+                socket.emit('typing', chat.getId());
+            }
         });
 
         sendBtn.addEventListener('click', () => {
