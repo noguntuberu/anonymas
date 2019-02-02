@@ -2,6 +2,7 @@
  *  WEB SOCKETS
 **/
 const   User = require('../classes/User.js'),
+        Chat = require('../classes/Chat.js'),
         userModel = require('../models/user.model'),
         chatModel = require('../models/chat.model');
 
@@ -18,17 +19,20 @@ class sockets {
             
             //  LISTEN FOR SCREEN NAME ADDITION
             socket.on('add-screen-name', (data) => {
-                let newUser = new User(socket, userModel);
+                let newUser = new User(userModel);
                 //
+                newUser.setSocket(socket);
                 newUser.setName(data.name);
                 newUser.saveName();
             });
 
             //  LISTEN FOR START CHAT
             socket.on('start-chat', (data) => {
-                let user = new User(socket, userModel);
+                let user = new User(userModel);
+
                 user.setChatModel(chatModel);
-                user.setUSerInfo(data);
+                user.setId(data.id);
+                user.setName(data.name);
 
                 user.startChat((data) => {
                     let retCode = 0;
@@ -57,6 +61,22 @@ class sockets {
 
             socket.on('new-message', data => {
                 socket.to(data.room).emit('new-message', {message: data.message});
+            });
+
+            socket.on('leave-chat', data => {
+                
+                const chat = new Chat(chatModel);
+                const user = new User(userModel);
+
+                chat.setId(data.chat);
+                user.setId(data.user);
+
+                user.disengageSelf();
+                user.freeSelf();
+
+                chat.leave();
+
+                socket.to(data.chat).emit('leave-chat', {});
             });
         });
     }

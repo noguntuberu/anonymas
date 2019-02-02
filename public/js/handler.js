@@ -4,6 +4,7 @@
 
 import {User} from './core/user.js';
 import {Chat} from './core/chat.js';
+import {Room} from './core/room.js';
 
 window.addEventListener('load', function(){
 
@@ -63,6 +64,7 @@ window.addEventListener('load', function(){
         //
         const user = new User();
         const chat = new Chat();
+        const chatRoom = new Room();
 
         user.loadFromLocalStorage();
         chat.loadFromLocalStorage();
@@ -71,11 +73,16 @@ window.addEventListener('load', function(){
 
         socket.on('typing', () => {
             //
-            console.log('typing');
+            chatRoom.updateStatBar('is typing');
         });
 
         socket.on('new-message', data => {
             console.log('incoming message');
+        });
+
+        socket.on('leave-chat', () => {
+            //
+            console.log('leaving');
         });
         
         //Get Elements
@@ -86,11 +93,14 @@ window.addEventListener('load', function(){
 
         //Handle
         leaveBtn.addEventListener('click', () => {
-            socket.emit('leave-chat', {user: user.getId(), chat: chat.getId()});
-            socket.on('leave-chat', () => {
-                chat.removeFromLocalStorage();
-                window.location = '/start';
+            socket.emit('leave-chat', {
+                user: user.getId(), 
+                chat: chat.getId(), 
+                otherUser: chat.getOtherUser()
             });
+
+            chat.removeFromLocalStorage();
+            window.location = '/start.html';
         });
 
         msgInput.addEventListener('input', () => {

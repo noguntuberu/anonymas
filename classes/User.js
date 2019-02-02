@@ -3,13 +3,13 @@
  */
 
  class User {
-    constructor (socket, userModel) {
-        this.socket = socket;
+    constructor (userModel) {
+        this.id = null;
+        this.name = '';
         this.userModel = userModel;
         this.chatModel = null;
-        this.info = {};
-        this.data = {};
         this.chatInfo = {};
+        this.socket = null;
     }
 
     setChatModel(model) {
@@ -17,12 +17,17 @@
     }
 
     setName(name) {
-        this.info.name = name;
+        this.name = name;
     }
 
-    setUSerInfo(info) {
-        this.info = info;
+    setId(id) {
+        this.id = id;
     }
+
+    setSocket(socket) {
+        this.socket = socket;
+    }
+
     determineChatDetail(){
         let chatDetail = {
             id: '',
@@ -32,7 +37,7 @@
 
         chatDetail.id = this.chatInfo._id;
 
-        if(this.chatInfo.to == this.info.id) {
+        if(this.chatInfo.to == this.id) {
             chatDetail.me = this.chatInfo.to;
             chatDetail.other = this.chatInfo.from;
         }else {
@@ -50,7 +55,7 @@
         let return_code = 0;
         let return_body = {id: '', name: ''};
         let newUser = new this.userModel({
-            name: this.info.name,
+            name: this.name,
             socket: '',
             wantsToChat: false,
             isInChat: false
@@ -68,7 +73,7 @@
     async wantsToChat() {
         //
         let data = {
-            id: this.info.id,
+            id: this.id,
             wantsToChat: true
         }
 
@@ -77,17 +82,17 @@
 
     async fetchMyInChatStatus() {
         //
-        return await this.userModel.getInChatStatus(this.info.id);
+        return await this.userModel.getInChatStatus(this.id);
     }
 
     async fetchChatInfo() {
         //
-        return await this.chatModel.getChat(this.info.id);
+        return await this.chatModel.getChat(this.id);
     }
     
     async fetchFreeUser() {
         //
-        return await this.userModel.getFreeUser(this.info.id);
+        return await this.userModel.getFreeUser(this.id);
     }
 
     async engageOtherUser(userId) {
@@ -101,7 +106,7 @@
     
     async engageSelf() {
         let data = {
-            id: this.info.id,
+            id: this.id,
             isInChat: true
         }
 
@@ -109,7 +114,7 @@
     }
     async disengageSelf() {
         let data = {
-            id: this.info.id,
+            id: this.id,
             isInChat: false
         }
 
@@ -118,16 +123,35 @@
     async disengageOtherUser(userId) {
         let data = {
             id: userId,
-            isInChat: true
+            isInChat: false
         }
 
         return await this.userModel.updateInChatStatus(data);
     }
 
+    async freeSelf() {
+        let data = {
+            id: this.id,
+            wantsToChat: false
+        }
+
+        return await this.userModel.updateWantChatStatus(data);
+    }
+
+    async freeOtherUSer(id)
+    {
+        let data = {
+            id: id,
+            wantsToChat: false
+        }
+
+        return await this.userModel.updateWantChatStatus(data);
+    }
+
     async establishChat(userId) {
         let data = new this.chatModel({
             to: userId,
-            from: this.info.id,
+            from: this.id,
             isActive: true
         });
 
