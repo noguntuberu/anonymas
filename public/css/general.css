@@ -4,9 +4,7 @@
  *	@Date: 15-07-2018
 */
 
-html{
-	
-}
+
 body{
 	margin: 0;
 }
@@ -56,6 +54,21 @@ li{
 	background: rgba(0, 0, 0, 0.8);
 }
 
+.toast {
+	display: none;
+	position: fixed;
+	bottom: 2.5vh;
+	left: 3.5%;
+
+	width: 93vw;
+	min-height: 50px;
+
+	padding: 15px;
+
+	text-align: center;
+	background: rgb(41, 40, 40);
+	color: #fff;
+}
 /*	*/
 .page-section-wrap{
 	min-height: 91vh;

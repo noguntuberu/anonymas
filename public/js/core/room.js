@@ -12,4 +12,14 @@ export class Room {
     updateStatBar(message) {
         this.statBar.innerHTML = message;
     }
+
+    addMessage(message, isIncoming = false) {
+        const div = document.createElement('div');
+        let className = isIncoming ? 'chat-message' : 'chat-message msg-out';
+
+        div.setAttribute('class', className);
+        div.innerHTML = message;
+        
+        this.messageList.appendChild(div);
+    }
 }

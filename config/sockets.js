@@ -18,7 +18,7 @@ class sockets {
             console.log('connected to socket.io on: ' + socket.id);
             
             //  LISTEN FOR SCREEN NAME ADDITION
-            socket.on('add-screen-name', (data) => {
+            socket.on('add-screen-name', data => {
                 let newUser = new User(userModel);
                 //
                 newUser.setSocket(socket);
@@ -27,14 +27,14 @@ class sockets {
             });
 
             //  LISTEN FOR START CHAT
-            socket.on('start-chat', (data) => {
+            socket.on('start-chat', data => {
                 let user = new User(userModel);
 
                 user.setChatModel(chatModel);
                 user.setId(data.id);
                 user.setName(data.name);
 
-                user.startChat((data) => {
+                user.startChat(data => {
                     let retCode = 0;
                     let retBody = {};
                     if(data) {

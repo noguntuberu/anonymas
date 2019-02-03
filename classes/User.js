@@ -181,12 +181,14 @@
                             }else {
                                 await this.disengageOtherUser(freeUser._id);
                                 await this.disengageSelf();
+                                await this.freeSelf();
                                 callback(null);
                             }
                         } else{
                             callback(null);
                         }
                     } else {
+                        await this.freeSelf();
                         callback(null);
                     }
                 }

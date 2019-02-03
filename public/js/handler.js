@@ -1,12 +1,17 @@
 /**
  * 
  */
-
+import './core/jquery.js';
 import {User} from './core/user.js';
 import {Chat} from './core/chat.js';
 import {Room} from './core/room.js';
+import {System} from './core/system.js';
 
 window.addEventListener('load', function(){
+
+    /* */
+    const system = new System();
+    
 
     /** SOCKETS */
     const socket = io();
@@ -17,6 +22,9 @@ window.addEventListener('load', function(){
 
     /* SAVE SCREEN NAME */
     if (addScreenNameBtn) {
+        const user = new User();
+        user.removeFromLocalStorage();
+
         addScreenNameBtn.addEventListener('click', () => {
 
             //
@@ -28,16 +36,27 @@ window.addEventListener('load', function(){
 
                 socket.on('add-screen-name', data => {
                     //
-                    const user = new User();
-                    user.saveToLocalStorage(data.body);
-                    window.location = '/start.html';
+                    if(data.code) {
+                        const user = new User();
+                        user.saveToLocalStorage(data.body);
+                        window.location = '/start.html';
+                    } else {
+                        system.displayToast('Could not add user');
+                    }
                 });
+            } else {
+                system.displayToast('Please enter a name');
             }
         });
     }
 
     /*  START A CHAT */
     if(startChatBtn) {
+        //
+        if(!system.doesUserExist()) {
+            window.location = './index.html';
+        }
+
         startChatBtn.addEventListener('click', () => {
             const user = new User();
             user.loadFromLocalStorage();
@@ -49,7 +68,7 @@ window.addEventListener('load', function(){
                 const chat = new Chat();
 
                 if (!data.code) {
-                    
+                    system.displayToast('No available user(s). Try again');
                 } else {
                     chat.saveToLocalStorage(data.body);
                     window.location = '/chat.html';
@@ -61,6 +80,11 @@ window.addEventListener('load', function(){
     /*  CHAT    */
     const chatPage = document.getElementById('chat');
     if(chatPage) {
+        //
+        if(!system.doesChatExist()) {
+            window.location = '/start.html';
+        }
+
         //
         const user = new User();
         const chat = new Chat();
@@ -83,11 +107,12 @@ window.addEventListener('load', function(){
 
         socket.on('new-message', data => {
             chatRoom.updateStatBar('');
+            chatRoom.addMessage(data.message, true);
         });
 
         socket.on('leave-chat', () => {
             //
-            console.log('leaving');
+            chatRoom.updateStatBar('user has left');
         });
         
         //Get Elements
@@ -118,9 +143,11 @@ window.addEventListener('load', function(){
 
         sendBtn.addEventListener('click', () => {
             const message = msgInput.value;
+            msgInput.value = '';
 
             if(message.length >= 1) {
                 socket.emit('new-message', {room: chat.getId(), message: message});
+                chatRoom.addMessage(message);
             }
         });
     }
