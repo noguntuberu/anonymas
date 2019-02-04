@@ -112,7 +112,7 @@ window.addEventListener('load', function(){
 
         socket.on('leave-chat', () => {
             //
-            chatRoom.updateStatBar('user has left');
+            system.displayToast('User has left chat');
         });
         
         //Get Elements

@@ -21,5 +21,6 @@ export class Room {
         div.innerHTML = message;
         
         this.messageList.appendChild(div);
+        this.messageList.scrollTop = this.messageList.scrollHeight;
     }
 }
