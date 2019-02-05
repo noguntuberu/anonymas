@@ -1,3 +1,4 @@
+
 section {
     height: 100vh;
 }
@@ -47,6 +48,23 @@ header {
 .header-text-wrapper{
     width: 60%;
 }
+
+.site-icon-wrap {
+    align-self: center;
+
+    width: 150px;
+    height: 150px;
+}
+
+.tagline {
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'EB Garamond', 'Righteous';
+    font-weight: 200;
+    
+    color: #053e88;
+}
+
 #user-name {
     width: auto;
     font-size: 28px;
