@@ -7,6 +7,11 @@ section {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.content-wrapper {
+    align-self: center;
+}
+
 .info-holder {
     width: 90%;
     height: auto;
@@ -35,7 +40,9 @@ form[name='chat_form'] > input, form[name='chat_form'] > textarea {
  */
 header {
     padding: 10px 15px;
-    height: 10vh;
+    height: 60px;
+
+    font-family: 'Righteous', Georgia, 'Times New Roman', Times, serif;
 }
 .header-text-wrapper{
     width: 60%;
@@ -67,6 +74,8 @@ header {
 #chat-messages{
     height: 87%;
     padding: 10px 15px;
+
+    overflow-y: scroll;
 }
 
 .chat-message{
@@ -79,13 +88,14 @@ header {
     margin-bottom: 10px;
     padding: 10px 20px;
     
-    background: #2f89ff;
-    color: #fff;
+    font-size: 1.0em;
+    background: #b2cef1;
+    color: #000;
 }
 
 .msg-out{
     float: right;
-    background: #815AED; 
+    background: rgb(215, 210, 230); 
 }
 
 /*  */
@@ -106,16 +116,55 @@ header {
 }
 
 @media screen and (min-width: 760px) {
-    .info-holder {
+    header {
+        padding: 20px 50px;
+        height: 80px;
+    }
+    .content-wrapper {
         width: 60%;
-        padding-bottom: 0;
+    }
 
-        background: rgba(255, 255, 255, 0.5);
+    #chat-messages {
+        padding: 20px 50px;
     }
 }
 
-@media screen and (min-width: 1200px) {
-    .info-holder {
+@media screen and (min-width: 1020px) {
+    header {
+        padding: 20px 100px;
+        height: 80px;
+    }
+    .content-wrapper {
         width: 450px;
     }
+    #chat-messages {
+        padding: 20px 100px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .page-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    header {
+        padding: 15px 30%;
+        height: 70px;
+    }
+
+    #chat-messages {
+        height: 100%;
+        
+        margin-top: 10px;
+        padding: 20px 30%;
+    }
+
+    .chat-form-wrapper {
+        padding: 0px 29%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    
 }
