@@ -2,9 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anonymas: Chat</title>
+    
+    <!--    STYLES      -->
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Righteous" rel="stylesheet">
+    <link rel="stylesheet" href="./css/my-style-lib.css">
+    
+    <!--    SCRIPTS     -->
+    <script type="text/javascript" src="./js/core/socket.io.js"></script>
+    <script type="text/javascript" src="./js/core/jquery.js"></script>
+    <script type="module" src="./js/handler.js"></script>
 </head>
 <body>
-    <h1>Anonymas: Chat</h1>
+    <div class="page-wrapper bg-sky-grey" id="chat">
+        <header class="bg-baby-blue">
+            <div class=header-text-wrapper>
+                <div id="user-name"><em>hallo!</em></div>
+                <div class="rounded-sides" id="chat-info-bar">
+                    
+                </div>
+            </div>
+            <button class="right leave-btn" id="leave-btn">Leave</button>
+        </header>
+        <section class="chat-area">
+            <div class="chat-content-wrapper">
+                <div id="chat-messages">
+                    <div class="chat-form-wrapper">
+                        <form name="chat_form">
+                            <textarea name="chat_form_text" cols="4" placeholder="Enter a message" class="input-75"></textarea>
+                            <input type="button" name="chat_form_btn" value="Send" class="bg-green input-25 no-border">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </div>
 </body>
 </html>

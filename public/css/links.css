@@ -1,0 +1,14 @@
+/*
+ *	@Purpose: Holds all my link styling
+ *	@Author: Oguntuberu Nathan O.
+ *	@Date: 15-07-2018
+*/
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+.span-link{
+	font-weight: bold;
+}
