@@ -24,6 +24,9 @@
     "url": "https://github.com/dynameek/anonymous/issues"
   },
   "homepage": "https://github.com/dynameek/anonymous#readme",
+  "engine" : {
+    "node": "10.x"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
