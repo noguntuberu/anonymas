@@ -38,6 +38,7 @@ window.addEventListener('load', function(){
             let screenName = nameInput.value;
 
             if(screenName.length >= 1) {
+                system.displayToast('Adding... Please wait');
                 socket.emit('add-screen-name', {socket_id: socket.id, name: screenName});
 
                 socket.on('add-screen-name', data => {
@@ -68,7 +69,7 @@ window.addEventListener('load', function(){
             user.loadFromLocalStorage();
 
             system.displayToast('Searching for available users');
-            
+
             let userInfo = {id: user.getId(), name: user.getName(), socket: socket.id};
             socket.emit('start-chat', userInfo);
 
