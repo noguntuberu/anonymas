@@ -22,11 +22,6 @@ window.addEventListener('load', function(){
 
     /* SAVE SCREEN NAME */
     if (addScreenNameBtn) {
-        //
-        if(system.doesUserExist()) {
-            window.location = './start.html';
-        }
-
 
         const user = new User();
         user.removeFromLocalStorage();
