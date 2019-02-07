@@ -94,7 +94,7 @@ header {
     height: 87%;
     padding: 10px 15px;
 
-    overflow-y: scroll;
+    overflow-y: hidden, scroll;
 }
 
 .chat-message{

@@ -22,6 +22,12 @@ window.addEventListener('load', function(){
 
     /* SAVE SCREEN NAME */
     if (addScreenNameBtn) {
+        //
+        if(system.doesUserExist()) {
+            window.location = './start.html';
+        }
+
+
         const user = new User();
         user.removeFromLocalStorage();
 
@@ -61,6 +67,8 @@ window.addEventListener('load', function(){
             const user = new User();
             user.loadFromLocalStorage();
 
+            system.displayToast('Searching for available users');
+            
             let userInfo = {id: user.getId(), name: user.getName(), socket: socket.id};
             socket.emit('start-chat', userInfo);
 
