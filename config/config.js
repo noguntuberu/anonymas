@@ -9,7 +9,7 @@ require('dotenv').config();
 const config = {
     setUpMongoDb(mongoose) {
         let database =  process.env.MONGODB_URI || process.env.MONGOLAB_URI ||
-                        process.env.MONGOHQ_URL || "mongodb://localhost/anonymas_test";
+                        process.env.MONGOHQ_URL || process.env.DB;
         //
         mongoose.connect(database);
     }
