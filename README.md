@@ -1,2 +1,0 @@
-# anonymas
-Anonymous chat application
