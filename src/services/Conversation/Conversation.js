@@ -17,7 +17,7 @@ class ConversationService {
             this.waiting_users.push(from_user);
             setTimeout(() => {
                 this.waiting_users.delete(from_user);
-            }, 5000);
+            }, 30000);
             return;
         }
 
