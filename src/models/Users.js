@@ -4,7 +4,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ModelHelper = require('./ModelsHelper');
+const ModelHelper = require('./ModelHelper');
 
 const UserSchema = new Schema({
     email: {
@@ -23,7 +23,7 @@ const UserSchema = new Schema({
     isActive: {
         type: Boolean,
         required: true,
-        default: false
+        default: true
     },
     isDeleted: {
         type: Boolean,

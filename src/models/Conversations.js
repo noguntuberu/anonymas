@@ -4,7 +4,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ModelHelper = require('./ModelsHelper');
+const ModelHelper = require('./ModelHelper');
 
 const ConversationSchema = new Schema({
     from_user: {
