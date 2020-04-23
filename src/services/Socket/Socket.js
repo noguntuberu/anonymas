@@ -20,9 +20,8 @@ class Socket {
             if (room_id) socket.join(room_id);
 
             socket.on('start_chat', async data => {
+                socket.broadcast.emit('available', {});
 
-                this.socket.emit('available', {});
-                
                 const { user_id } = data;
                 const conversation = await ConversationService.start_conversation(user_id);
 
