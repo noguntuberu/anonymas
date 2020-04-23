@@ -8,22 +8,20 @@ class Socket {
     constructor() {
         this.socket = null;
     }
-
-    set_socket(socket) {
+    initialize(socket) {
         this.socket = socket;
-    }
 
-    initialize() {
         this.socket.on('connection', async socket => {
 
             const { room_id } = socket.handshake.query;
             if (room_id) socket.join(room_id);
 
             socket.on('start_chat', async data => {
-                socket.broadcast.emit('available', {});
-
+                
                 const { user_id } = data;
-                const conversation = await ConversationService.start_conversation(user_id);
+
+                socket.broadcast.emit('available', { user_id } );
+                const conversation = await ConversationService.start_conversation(user_id, socket);
 
                 if (!conversation || !conversation.success) return;
 

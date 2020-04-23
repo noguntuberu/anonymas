@@ -15,7 +15,8 @@ const
     express_file_upload = require('express-fileupload'),
     fs = require('fs'),
     helmet = require('helmet'),
-    https = require('https');
+    https = require('https'),
+    // http = require('http');
 
 
 /** INSTANTIATE APP*/
@@ -40,14 +41,13 @@ const ssl_config = {
     key: fs.readFileSync(process.env.SSL_KEY),
     cert: fs.readFileSync(process.env.SSL_CERT)
 }
-// const server = http.createServer(ssl_config, app);
 const server = https.createServer(ssl_config, app);
+// const server = http.createServer(app);
 
 /** SOCKET */
 const SocketService = require('./src/services/Socket/Socket');
 const socket = require('socket.io')(server);
-SocketService.set_socket(socket);
-SocketService.initialize();
+SocketService.initialize(socket);
 
 const port = process.env.APP_PORT || 3030;
 server.listen(port, () => {
