@@ -32,7 +32,7 @@ class Socket {
 
                 if (!conversation_users.success) return;
 
-                this.socket.emit('chat_started', { ...conversation.payload, users: conversation_users.payload });
+                socket.emit('chat_started', { ...conversation.payload, users: conversation_users.payload });
             });
 
             socket.on(`typing`, data => {
