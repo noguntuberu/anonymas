@@ -41,6 +41,10 @@ class Queue {
         this.queue[key] = value;
     }
 
+    has (key) {
+        return this.queue[key];
+    }
+
     delete (key) {
         delete this.queue[key];
         const keys = Object.keys(this.queue);
