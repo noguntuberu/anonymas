@@ -25,17 +25,17 @@ class Socket {
 
             socket.on(`typing`, data => {
                 const { room_id, is_typing } = data;
-                io.to(room_id).broadcast.emit('typing', is_typing);
+                socket.to(room_id).broadcast.emit('typing', is_typing);
             });
 
             socket.on('message', data => {
                 const { room_id, sender, new_message } = data;
-                io.to(room_id).broadcast.emit('message', { sender, new_message });
+                socket.to(room_id).broadcast.emit('message', { sender, new_message });
             });
 
             socket.on('left', data => {
                 const { room_id } = data;
-                io.to(room_id).broadcast.emit('left');
+                socket.to(room_id).broadcast.emit('left');
                 socket.leave(room_id);
             });
         });
