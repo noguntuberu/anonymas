@@ -2,7 +2,6 @@
  * @author Oguntuberu Nathan O. <nateoguns.work@gmail.com>
 **/
 const ConversationService = require('../Conversation/Conversation');
-const UserService = require('../User/User');
 
 class Socket {
     constructor() {
@@ -12,25 +11,21 @@ class Socket {
         this.socket = socket;
 
         this.socket.on('connection', async socket => {
-
-            const { room_id } = socket.handshake.query;
-            if (room_id) socket.join(room_id);
+            /** */
+            socket.on('join_room', room_id => {
+                socket.join(room_id);
+            })
 
             socket.on('start_chat', async data => {
-                
-                const { user_id } = data;
+                const { user } = data;
+                const user_id = user._id;
 
                 socket.broadcast.emit('available', { user_id } );
-                const conversation = await ConversationService.start_conversation(user_id, socket);
+                const conversation = await ConversationService.start_conversation(user, socket);
 
                 if (!conversation || !conversation.success) return;
 
-                const { from_user, to_user } = conversation.payload;
-                const conversation_users = await UserService.fetch_users({ _id: `${from_user},${to_user}` });
-
-                if (!conversation_users.success) return;
-
-                this.socket.emit('chat_started', { ...conversation.payload, users: conversation_users.payload });
+                this.socket.emit('chat_started', conversation.payload);
             });
 
             socket.on(`typing`, data => {
