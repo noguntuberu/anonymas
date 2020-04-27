@@ -13,7 +13,7 @@ class Socket {
         this.socket.on('connection', async socket => {
             /** */
             socket.on('join_room', room_id => {
-                socket.join(room_id);
+                this.socket.join(room_id);
             })
 
             socket.on('start_chat', async data => {
@@ -30,17 +30,17 @@ class Socket {
 
             socket.on(`typing`, data => {
                 const { room_id, is_typing } = data;
-                socket.to(room_id).broadcast.emit('typing', is_typing);
+                this.socket.to(room_id).broadcast.emit('typing', is_typing);
             });
 
             socket.on('message', data => {
                 const { room_id, sender, new_message } = data;
-                socket.to(room_id).broadcast.emit('message', { sender, new_message });
+                this.socket.to(room_id).broadcast.emit('message', { sender, new_message });
             });
 
             socket.on('left', data => {
                 const { room_id } = data;
-                socket.to(room_id).broadcast.emit('left');
+                this.socket.to(room_id).broadcast.emit('left');
                 socket.leave(room_id);
             });
         });
