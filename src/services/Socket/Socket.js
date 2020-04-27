@@ -7,8 +7,8 @@ class Socket {
     constructor() {
         this.socket = null;
     }
-    initialize(socket) {
-        this.socket = socket;
+    initialize(main_socket) {
+        this.socket = main_socket;
 
         this.socket.on('connection', async socket => {
             /** */
