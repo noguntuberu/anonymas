@@ -30,6 +30,7 @@ class Socket {
 
             socket.on('message', data => {
                 const { room_id, sender, new_message } = data;
+                console.log('message');
                 socket.to(room_id).broadcast.emit('message', { sender, new_message });
             });
 
