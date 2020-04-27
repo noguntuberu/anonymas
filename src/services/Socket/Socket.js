@@ -34,8 +34,8 @@ class Socket {
             });
 
             socket.on('message', data => {
-                const { room_id, user_id, new_message } = data;
-                socket.to(room_id).broadcast.emit('message', { user_id, new_message });
+                const { room_id, sender, new_message } = data;
+                socket.to(room_id).broadcast.emit('message', { sender, new_message });
             });
 
             socket.on('left', data => {
