@@ -2,6 +2,7 @@
  * @author Oguntuberu Nathan O. <nateoguns.work@gmail.com>
 **/
 const ConversationService = require('../Conversation/Conversation');
+const MessageService = require('../Message/Message');
 
 class Socket {
     initialize(io) {
@@ -15,7 +16,7 @@ class Socket {
                 const { user } = data;
                 const user_id = user._id;
 
-                socket.broadcast.emit('available', { user_id } );
+                socket.broadcast.emit('available', { user_id });
                 const conversation = await ConversationService.start_conversation(user, socket);
 
                 if (!conversation || !conversation.success) return;
@@ -28,10 +29,23 @@ class Socket {
                 socket.to(room_id).broadcast.emit('typing', is_typing);
             });
 
-            socket.on('message', data => {
-                const { room_id, sender, new_message } = data;
-                console.log('message');
-                socket.to(room_id).broadcast.emit('message', { sender, new_message });
+            socket.on('message', async data => {
+                const { conversation_id, sender, body } = data;
+                const creation_data = {
+                    sender,
+                    conversation_id,
+                    body
+                };
+
+                const message_creation = await MessageService.create(creation_data);
+
+                let message_response = {};
+                if (message_creation.success) {
+                    message_response = { ...data, ...message_creation.payload, status: 'sent' };
+                } else {
+                    message_response = { ...data, status: 'failed' }
+                }
+                socket.to(conversation_id).broadcast.emit('message', { ...message_response });
             });
 
             socket.on('left', data => {
