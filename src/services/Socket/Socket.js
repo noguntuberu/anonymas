@@ -2,56 +2,55 @@
  * @author Oguntuberu Nathan O. <nateoguns.work@gmail.com>
 **/
 const ConversationService = require('../Conversation/Conversation');
+const FavoriteService = require('../User/Favorites');
 const MessageService = require('../Message/Message');
+const UserService = require('../User/User');
 
 class Socket {
     initialize(io) {
         io.on('connection', async socket => {
-            /** */
-            socket.on('join_room', room_id => {
+
+            socket.once('user:online', data => {
+                io.emit('user:online', data);
+            });
+
+            socket.on('room:join', room_id => {
                 socket.join(room_id);
             });
 
-            socket.on('start_chat', async data => {
+            socket.on('chat:join', async data => {
                 const { user } = data;
-                const user_id = user._id;
-
-                socket.broadcast.emit('available', { user_id });
+                socket.broadcast.emit('user:available', { user_id: user._id });
                 const conversation = await ConversationService.start_conversation(user, socket);
 
                 if (!conversation || !conversation.success) return;
-
-                io.emit('chat_started', conversation.payload);
+                io.emit('chat:started', conversation.payload);
             });
 
-            socket.on(`typing`, data => {
-                const { room_id, is_typing } = data;
-                socket.to(room_id).broadcast.emit('typing', is_typing);
-            });
-
-            socket.on('message', async data => {
-                const { conversation_id, sender, body } = data;
-                const creation_data = {
-                    sender,
-                    conversation_id,
-                    body
-                };
-
-                const message_creation = await MessageService.create(creation_data);
-
-                let message_response = {};
-                if (message_creation.success) {
-                    message_response = { ...data, ...message_creation.payload, status: 'sent' };
-                } else {
-                    message_response = { ...data, status: 'failed' }
-                }
-                socket.to(conversation_id).broadcast.emit('message', { ...message_response });
-            });
-
-            socket.on('left', data => {
+            socket.on('chat:leave', data => {
                 const { room_id } = data;
-                socket.to(room_id).broadcast.emit('left');
+                socket.to(room_id).broadcast.emit('chat:left');
                 socket.leave(room_id);
+            });
+
+            socket.on(`chat:typing`, data => {
+                const { room_id, is_typing } = data;
+                socket.to(room_id).broadcast.emit('chat:typing', is_typing);
+            });
+
+            socket.on('favorite:add', async data => {
+                const fave_addition = await FavoriteService.add_favorite(data);
+                const user = UserService.get_user_from_server_object(data.to_user)
+                socket.emit('favorite:added', { ...fave_addition, user });
+            });
+
+            socket.on('favorite:remove', async data => {
+                const fave_removal = await FavoriteService.remove_favorite(data);
+                socket.emit('favorite:removed', { ...fave_removal, user: data.to_user});
+            });
+
+            socket.on('message:add', async data => {
+                MessageService.create({ ...data}, socket);
             });
         });
     }

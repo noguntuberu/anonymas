@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ModelHelper = require('./ModelHelper');
 
-const ConversationSchema = new Schema({
+const FavoriteSchema = new Schema({
     from_user: {
         type: String,
         required: false
@@ -31,29 +31,29 @@ const ConversationSchema = new Schema({
     }
 });
 
-const Conversation = module.exports = mongoose.model('Conversation', ConversationSchema);
+const Favorite = module.exports = mongoose.model('Favorite', FavoriteSchema);
 
 module.exports.create_record = async data => {
-    const new_record = new Conversation({ ...data, createdOn: Date.now() });
+    const new_record = new Favorite({ ...data, createdOn: Date.now() });
     return await new_record.save();
 };
 
 module.exports.read_record = async options => {
-    return await Conversation.find({
+    return await Favorite.find({
         ...ModelHelper.process_alternatives(options),
         isDeleted: false
     });
 }
 
 module.exports.update_record = async (options, data) => {
-    return await Conversation.updateMany({
+    return await Favorite.updateMany({
         ...ModelHelper.process_alternatives(options),
         isDeleted: false
     }, { ...data });
 };
 
 module.exports.delete_record = async options => {
-    return await Conversation.updateMany({
+    return await Favorite.updateMany({
         ...ModelHelper.process_alternatives(options),
         isDeleted: false
     }, { 

@@ -46,7 +46,9 @@ const server = https.createServer(ssl_config, app);
 
 /** SOCKET */
 const SocketService = require('./src/services/Socket/Socket');
-const socket = require('socket.io')(server);
+const socket = require('socket.io')(server, {
+    // transports: ['websocket']
+});
 SocketService.initialize(socket);
 
 const port = process.env.APP_PORT || 3030;

@@ -17,8 +17,7 @@ const UserSchema = new Schema({
     },
     createdOn: {
         type: String,
-        required: true,
-        default: Date.now()
+        required: true
     },
     isActive: {
         type: Boolean,
@@ -35,7 +34,7 @@ const UserSchema = new Schema({
 const User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.create_record = async data => {
-    const new_record = new User({ ...data });
+    const new_record = new User({ ...data, createdOn: Date.now() });
     return await new_record.save();
 };
 

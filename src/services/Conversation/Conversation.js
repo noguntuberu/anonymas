@@ -19,7 +19,7 @@ class ConversationService {
             setTimeout(() => {
                 if (this.waiting_users.has(from_user._id)) {
                     this.waiting_users.delete(from_user._id);
-                    socket.emit('no_user');
+                    socket.emit('user:none');
                 }
             }, 30000);
             return

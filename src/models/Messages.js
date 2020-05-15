@@ -21,8 +21,7 @@ const MessageSchema = new Schema({
     },
     createdOn: {
         type: String,
-        required: true,
-        default: Date.now()
+        required: true
     },
     isActive: {
         type: Boolean,
@@ -39,7 +38,7 @@ const MessageSchema = new Schema({
 const Message = module.exports = mongoose.model('Message', MessageSchema);
 
 module.exports.create_record = async data => {
-    const new_record = new Message({ ...data });
+    const new_record = new Message({ ...data, createdOn: Date.now() });
     return await new_record.save();
 };
 
