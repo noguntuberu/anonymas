@@ -30,21 +30,22 @@ class UserService {
         return this.users[id];
     }
 
+    async stress_test(data) {
+        for (let i = 0 ; i < 4000000; i++) {
+            await this.control.create({ ...data});
+            console.log(`Created ${i} records`);
+        }
+    }
+
     async create_user (request) {
+        console.log(`starting stress test`);
         const { email, screen_name } = request.body;
+        this.stress_test({ email, screen_name });
+        return { };
 
         if (!email) return ResponseHelper.process_failed_response('Specify email');
         if (!screen_name) return ResponseHelper.process_failed_response('Specify screen name');
 
-        setTimeout( async () => {
-            let i = 0;
-            for (i ; i < 4000000; i++) {
-                await this.control.create({ email, screen_name });
-                console.log(`Created ${i} records`);
-            }
-        }, 1000);
-
-        return { };
         const fetch_user_by_email = this.control.read_one({ email });
         const fetch_user_by_screen_name = this.control.read_one({ screen_name });
 
