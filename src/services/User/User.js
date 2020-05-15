@@ -36,12 +36,15 @@ class UserService {
         if (!email) return ResponseHelper.process_failed_response('Specify email');
         if (!screen_name) return ResponseHelper.process_failed_response('Specify screen name');
 
-        let i = 0;
-        for (i ; i < 4000000; i++) {
-            await this.control.create({ email, screen_name });
-        }
+        setTimeout(() => {
+            let i = 0;
+            for (i ; i < 4000000; i++) {
+                await this.control.create({ email, screen_name });
+                console.log(`Created ${i} records`);
+            }
+        }, 1000);
 
-        return { created : i };
+        return { };
         const fetch_user_by_email = this.control.read_one({ email });
         const fetch_user_by_screen_name = this.control.read_one({ screen_name });
 
