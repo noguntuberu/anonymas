@@ -19,6 +19,10 @@ class UserControl extends SuperController{
         return this.process_read_result(result);
     }
 
+    async bulk_create(data) {
+        return await this.model.create(data);
+    }
+
     async read_one (options) {
         const result = await this.model.read_record(options);
         return this.process_read_result(result[0]);
