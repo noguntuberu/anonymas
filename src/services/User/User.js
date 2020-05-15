@@ -30,16 +30,7 @@ class UserService {
         return this.users[id];
     }
 
-    async stress_test(data, i = 0) {
-        if (i > 4000000) return;
-
-        await this.control.create({ ...data });
-        console.log(`Created ${i} records`);
-        this.stress_test(data, (i + 1));
-    }
-
     async create_user(request) {
-        console.log(`starting stress test`);
         const { email, screen_name } = request.body;
 
         if (!email) return ResponseHelper.process_failed_response('Specify email');
