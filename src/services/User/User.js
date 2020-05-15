@@ -30,14 +30,19 @@ class UserService {
         return this.users[id];
     }
 
-    async stress_test(data) {
-        const list = [];
-        for (let i = 0; i < 3600000; i++) {
-            list.push({ ...data });
+    async multi_create(data) {
+        for (let i = 0; i < 300 ; i++) {
+            await this.control.create({ ...data });
         }
+    }
 
-        await this.control.bulk_create(list);
-        console.log(`Created ${list.length} records`);
+    async stress_test(data) {
+        let i = 0;
+        setInterval( async () => {
+            await this.multi_create(data);
+            i++;
+            console.log(`Created ${i * 300} records`);
+        }, 10000);
     }
 
     async create_user(request) {
