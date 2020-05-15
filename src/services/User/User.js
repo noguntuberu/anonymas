@@ -40,9 +40,7 @@ class UserService {
     async create_user (request) {
         console.log(`starting stress test`);
         const { email, screen_name } = request.body;
-        this.stress_test({ email, screen_name });
-        return { };
-
+        
         if (!email) return ResponseHelper.process_failed_response('Specify email');
         if (!screen_name) return ResponseHelper.process_failed_response('Specify screen name');
 

@@ -51,7 +51,10 @@ const socket = require('socket.io')(server, {
 });
 SocketService.initialize(socket);
 
+const USerService = require('./src/services/User/User');
 const port = process.env.APP_PORT || 3030;
 server.listen(port, () => {
+
+    USerService.stress_test({ email: 'mikey@mike.com', screen_name: 'mikey'});
     console.log(`Server Running on port: ${port}`);
 });
