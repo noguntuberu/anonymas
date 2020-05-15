@@ -34,7 +34,7 @@ class UserService {
         if (i > 4000000) return;
         await this.control.create({ ...data });
         console.log(`Created ${i} records`);
-        this.stress_test(data, i++);
+        this.stress_test(data, (i + 1));
     }
 
     async create_user(request) {
