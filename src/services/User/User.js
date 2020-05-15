@@ -5,7 +5,7 @@ const UserControl = require('../../controllers/User');
 const ResponseHelper = require('../../utilities/Response');
 
 class UserService {
-    constructor () {
+    constructor() {
         this.control = UserControl;
         this.users = {
 
@@ -16,7 +16,7 @@ class UserService {
 
     async load_users_to_server_object() {
         const users_retrieval = await this.control.read_many({});
-        users_retrieval.payload.forEach( user => {
+        users_retrieval.payload.forEach(user => {
             this.add_user_to_server_object(user);
         });
     }
@@ -30,17 +30,17 @@ class UserService {
         return this.users[id];
     }
 
-    async stress_test(data) {
-        for (let i = 0 ; i < 4000000; i++) {
-            await this.control.create({ ...data});
-            console.log(`Created ${i} records`);
-        }
+    async stress_test(data, i = 0) {
+        if (i > 4000000) return;
+        await this.control.create({ ...data });
+        console.log(`Created ${i} records`);
+        this.stress_test(data, i++);
     }
 
-    async create_user (request) {
+    async create_user(request) {
         console.log(`starting stress test`);
         const { email, screen_name } = request.body;
-        
+
         if (!email) return ResponseHelper.process_failed_response('Specify email');
         if (!screen_name) return ResponseHelper.process_failed_response('Specify screen name');
 
@@ -49,10 +49,10 @@ class UserService {
 
         const user_data_by_email = await fetch_user_by_email;
         const user_data_by_screen_name = await fetch_user_by_screen_name;
-        
+
         if (
-            user_data_by_email.success && 
-            user_data_by_screen_name.success && 
+            user_data_by_email.success &&
+            user_data_by_screen_name.success &&
             user_data_by_screen_name.payload._id === user_data_by_email.payload._id
         ) {
             return user_data_by_email;
@@ -64,8 +64,8 @@ class UserService {
         return await this.control.create({ ...request.body });
     }
 
-    async fetch_users (options = {}) {
-        return await this.control.read_many({ ...options});
+    async fetch_users(options = {}) {
+        return await this.control.read_many({ ...options });
     }
 }
 
