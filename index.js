@@ -32,8 +32,8 @@ app.use(express_file_upload());
 
 /** ROUTES */
 const routeHandler = require('./src/routes/config');
+app.use('/anonymas', routeHandler);
 app.use('/', routeHandler);
-
 
 /** START SERVER*/
 const server = http.createServer(app);
