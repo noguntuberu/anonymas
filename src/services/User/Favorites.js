@@ -57,7 +57,9 @@ class FavoriteService {
         if ( !user_favorites.success ) return user_favorites;
         
         const fave_ids = user_favorites.payload.map( fave =>  fave.to_user);
-        return await UserControl.read_many({ _id: fave_ids.join()});
+        return fave_ids.length 
+            ? await UserControl.read_many({ _id: fave_ids.join()})
+            : ResponseHelper.process_success_response([]);
     }
 
     async remove_favorite(data) {
