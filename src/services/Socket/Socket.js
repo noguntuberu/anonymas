@@ -52,6 +52,8 @@ class Socket {
             socket.on('message:add', async data => {
                 MessageService.create({ ...data}, socket);
             });
+
+            
         });
     }
 }
