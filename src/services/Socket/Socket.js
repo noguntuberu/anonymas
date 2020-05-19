@@ -53,7 +53,14 @@ class Socket {
                 MessageService.create({ ...data}, socket);
             });
 
-            
+            socket.on('message:delete', async data => {
+                socket.emit('message:deleted', data);
+            });
+
+            socket.on('message:unsend', data => {
+                const { room_id } = data;
+                io.to(room_id).emit('message:unsent', data);
+            });
         });
     }
 }
