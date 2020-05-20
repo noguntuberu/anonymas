@@ -40,7 +40,11 @@ const server = http.createServer(app);
 
 /** SOCKET */
 const SocketService = require('./src/services/Socket/Socket');
-const socket = require('socket.io')(server);
+const socket = require('socket.io')(server, {
+    origins: '*:*',
+    path: '/anonymas'
+});
+
 SocketService.initialize(socket);
 
 const port = process.env.APP_PORT || 3030;
