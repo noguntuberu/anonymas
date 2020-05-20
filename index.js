@@ -41,8 +41,7 @@ const server = http.createServer(app);
 /** SOCKET */
 const SocketService = require('./src/services/Socket/Socket');
 const socket = require('socket.io')(server, {
-    origins: '*:*',
-    path: '/anonymas'
+    origins: '*:*'
 });
 
 SocketService.initialize(socket);
